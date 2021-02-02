@@ -1,4 +1,5 @@
 import { serve } from "https://deno.land/std/http/server.ts";
+import { requestParser } from "./src/mainUtils/mod.ts";
 
 const responseHeader: Headers = new Headers();
 
@@ -19,13 +20,20 @@ for await (const req of server) {
               context
             } = await requestParser(req);
 
+            return {
+                ["Testing"]: async () => console.log("Functon works"),
+                ["Center"]: async () => "Center added"
+
+            }[model]()
+        }
+
        req.respond({
            body: JSON.stringify({
                success: true,
                body: await response()
            }),
            status: 200,
-           header: responseHeader
+           headers: responseHeader
        })
     } catch (error) {
         req.respond({

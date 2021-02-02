@@ -4,10 +4,28 @@
 
 // External Imports
 import { ServerRequest } from "https://deno.land/std/http/server.ts";
+import FastestValidator from "https://cdn.pika.dev/fastest-validator@^1.8.0";
 
 // Utilities imports
 import { throwError } from "./throwError.ts"
+import {body, bodyAdditional} from "../schemas/clientRequest.ts"
 
+const v = new FastestValidator();
+const check = v.compile({
+	wants: {
+		type: "object",
+		props: {
+			model: {
+				type: "enum",
+				values: [
+					"Testing",
+					"Center",
+					
+				],
+			},
+		},
+	},
+});
 
 
 export const requestParser = async (req: ServerRequest) => {
@@ -31,11 +49,11 @@ export const requestParser = async (req: ServerRequest) => {
 
 		return isRequestValid === true
 		? isRequestValid
-		: throwError(`${isRequestValid[0].message} is expected but ${isRequestValid[0].actual} is received`)
+		: throwError(`${isRequestValid[0].message} But  => ${isRequestValid[0].actual} <= is received`)
 	}
 
 	return req.method === "POST" &&
-	req.url === "/funQL" &&
+	req.url === "/funql" &&
 	checkRequestBody(parsedBodyAdditional)
 	? parsedBodyAdditional
 	: throwError(``)

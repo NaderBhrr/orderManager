@@ -1,2 +1,2 @@
-export * from "./requestParser"
-export * from "./throwError"
+export * from "./requestParser.ts"
+export * from "./throwError.ts"
