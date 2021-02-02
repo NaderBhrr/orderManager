@@ -12,7 +12,10 @@ const check = v.compile({
         type: "object",
         props: {
           name: { type: "string" },
-          enName: { type: "string" }
+          owner: { type: "object", props: {}},
+          address: { type: "string" },
+          phone: {type: "number"},
+          servingStyle: {}
         }
       },
       get: {
@@ -25,6 +28,7 @@ const check = v.compile({
 });
 
 type detailsSet = { name: string; enName: string };
+
 interface addingCenterDetails {
   set: detailsSet;
   get: RCenter;
