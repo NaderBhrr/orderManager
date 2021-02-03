@@ -1,5 +1,5 @@
 import db, { Bson } from "../../db.ts";
-import { fieldType } from "./utils/fieldType.ts";
+import { fieldType } from "./mod.ts";
 
 export interface User {
   _id: Bson.ObjectId;
