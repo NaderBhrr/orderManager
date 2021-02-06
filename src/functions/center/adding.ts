@@ -1,11 +1,9 @@
+// Import External dependencies
 import FastestValidator from 'https://cdn.pika.dev/fastest-validator@^1.8.0';
+
+// Import Database
 import { Bson } from '../../../db.ts';
-import {
-	Center,
-	centerCollection,
-	centerSelectable,
-	RCenter,
-} from '../../schemas/mod.ts';
+import { Center, centerSelectable, RCenter } from '../../schemas/mod.ts';
 import { throwError } from '../../utils/index.ts';
 
 const v = new FastestValidator();
